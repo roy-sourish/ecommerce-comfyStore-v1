@@ -1,9 +1,9 @@
-import React from 'react'
+import { FormInput, SubmitBtn } from "../components/FormInput";
+
+
 
 function Login() {
-  return (
-    <div>Login</div>
-  )
+  return <div>Login</div>;
 }
 
-export default Login
+export default Login;
