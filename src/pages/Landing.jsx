@@ -1,5 +1,5 @@
 import React from "react";
-import { Hero } from "../components/components-index.js";
+import { FeaturedProducts, Hero } from "../components/components-index.js";
 import { customFetch } from "../utils/indexAxios.js";
 
 const url = "/products?featured=true";
@@ -15,6 +15,7 @@ function Landing() {
   return (
     <div>
       <Hero />
+      <FeaturedProducts />
     </div>
   );
 }
