@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import { Hero } from "../components/components-index.js";
 
 function Landing() {
   return (
-    <div>Landing</div>
-  )
+    <div>
+      <Hero />
+    </div>
+  );
 }
 
-export default Landing
+export default Landing;
