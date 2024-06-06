@@ -1,6 +1,6 @@
 import React from "react";
 import { FeaturedProducts, Hero } from "../components/components-index.js";
-import { customFetch } from "../utils/indexAxios.js";
+import { customFetch } from "../utils/indexAxios.jsx";
 
 const url = "/products?featured=true";
 

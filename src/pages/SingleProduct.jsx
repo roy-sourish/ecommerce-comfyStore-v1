@@ -2,7 +2,11 @@ import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-import { formatPrice, customFetch } from "../utils/indexAxios.js";
+import {
+  formatPrice,
+  customFetch,
+  generateAmountOptions,
+} from "../utils/indexAxios.jsx";
 
 export const loader = async ({ params }) => {
   const response = await customFetch(`/products/${params.id}`);
@@ -84,16 +88,14 @@ function SingleProduct() {
               value={amount}
               onChange={handleAmount}
             >
-              <option value={1}>1</option>
-              <option value={2}>2</option>
-              <option value={3}>3</option>
+              {generateAmountOptions(4)}
             </select>
           </div>
           {/* CART BUTTON */}
-          <div className='mt-10 '>
+          <div className="mt-10 ">
             <button
-              className='btn btn-secondary btn-md'
-              onClick={() => console.log('add to bag')}
+              className="btn btn-secondary btn-md"
+              onClick={() => console.log("add to bag")}
             >
               Add to bag
             </button>
