@@ -7,13 +7,20 @@ import {
   customFetch,
   generateAmountOptions,
 } from "../utils/indexAxios.jsx";
+import { useDispatch } from "react-redux";
+import { addItem } from "../features/cart/cartSlice";
+
+//#region Loader
 
 export const loader = async ({ params }) => {
   const response = await customFetch(`/products/${params.id}`);
-  console.log(response.data.data);
+  // console.log(response.data.data);
   return { product: response.data.data };
 };
 
+//#endregion
+
+//#region main comoponent
 function SingleProduct() {
   const { product } = useLoaderData();
   const { image, title, price, description, colors, company } =
@@ -27,6 +34,23 @@ function SingleProduct() {
     setAmount(parseInt(e.target.value));
   }
 
+  // construct payload
+  const cartProduct = {
+    cartId: product.id + productColor,
+    productId: product.id,
+    image,
+    title,
+    price,
+    company,
+    amount,
+    productColor,
+  };
+
+  const dispatch = useDispatch();
+
+  const addToCart = () => {
+    dispatch(addItem({ product: cartProduct }));
+  };
   return (
     <section>
       <div className="text-md breadcrumbs">
@@ -93,10 +117,7 @@ function SingleProduct() {
           </div>
           {/* CART BUTTON */}
           <div className="mt-10 ">
-            <button
-              className="btn btn-secondary btn-md"
-              onClick={() => console.log("add to bag")}
-            >
+            <button className="btn btn-secondary btn-md" onClick={addToCart}>
               Add to bag
             </button>
           </div>
@@ -105,5 +126,5 @@ function SingleProduct() {
     </section>
   );
 }
-
+//#endregion
 export default SingleProduct;
