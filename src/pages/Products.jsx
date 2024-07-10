@@ -4,16 +4,24 @@ import ProductsContainer from "../components/ProductsContainer";
 import PaginationContainer from "../components/PaginationContainer";
 import { customFetch } from "../utils/indexAxios";
 
-const URL = "/products";
+const url = "/products";
 export const loader = async ({ request }) => {
-  const response = await customFetch(URL);
+  const params = Object.fromEntries([
+    ...new URL(request.url).searchParams.entries(),
+  ]);
+
+  console.log(params);
+  const response = await customFetch(url, {
+    params,
+  });
 
   // console.log(response);
+  console.log(request);
 
   const products = response.data.data;
   const meta = response.data.meta;
 
-  return { products, meta };
+  return { products, meta, params };
 };
 
 function Products() {
